@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Building2, CalendarClock, Home, KeyRound, MapPin, Phone } from "lucide-react";
 import { site } from "@/lib/content";
 
@@ -17,6 +18,22 @@ export default function Hero() {
       id="top"
       className="relative isolate overflow-hidden bg-gradient-to-b from-ink via-navy-950 to-navy-900 pt-36 pb-24 sm:pt-44 sm:pb-32"
     >
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] sm:block">
+        <Image
+          src="/images/hero-photo.jpg"
+          alt="Cleaning supplies staged in a bright, freshly cleaned living room"
+          fill
+          priority
+          className="object-cover object-[65%_55%]"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(6,10,18,1) 0%, rgba(6,10,18,0.85) 12%, rgba(11,23,40,0.35) 32%, rgba(11,23,40,0.15) 55%, rgba(6,10,18,0.55) 100%)",
+          }}
+        />
+      </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
