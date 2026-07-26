@@ -18,6 +18,21 @@ export default function Hero() {
       id="top"
       className="relative isolate overflow-hidden bg-gradient-to-b from-ink via-navy-950 to-navy-900 pt-36 pb-24 sm:pt-44 sm:pb-32"
     >
+      <Image
+        src="/images/hero-photo.jpg"
+        alt=""
+        fill
+        priority
+        className="object-cover object-[80%_35%]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-navy-950/85 sm:hidden" />
+      <div
+        className="pointer-events-none absolute inset-0 hidden sm:block"
+        style={{
+          background:
+            "linear-gradient(100deg, rgba(6,10,18,0.97) 15%, rgba(11,23,40,0.92) 40%, rgba(15,32,56,0.75) 65%, rgba(15,32,56,0.55) 100%)",
+        }}
+      />
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
