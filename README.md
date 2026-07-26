@@ -70,6 +70,22 @@ If you edit `Code.gs` later, you have to **Deploy → Manage deployments
 → edit (pencil) → New version** for the change to actually take
 effect — saving the script alone doesn't update the live endpoint.
 
+**Verify the email notification works** before relying on it: in the
+Apps Script editor, select `testDoPost` from the function dropdown
+next to the Run button and click **Run**. The first run will prompt
+you to authorize the script (spreadsheet access + "Send email as
+you") — accept it the same way as the deployment prompt. Then check:
+
+- The **"Website Requests"** tab got a new test row.
+- Your inbox (and **spam/junk folder** — automated Apps Script emails
+  occasionally land there the first time) got the notification email.
+- **View → Logs** in the editor shows `{"result":"success"}`.
+
+If the row appears but no email arrives, the row is still safe (email
+failures no longer block the submission) — re-check that
+`NOTIFY_EMAIL` is spelled correctly and that you accepted the Gmail
+send permission during authorization.
+
 If `NEXT_PUBLIC_FORM_ENDPOINT` is left unset, the form falls back to
 opening the visitor's email client with a prefilled message instead of
 failing silently — useful for local preview, but the Apps Script

@@ -62,18 +62,59 @@ function doPost(e) {
 
     sheet.appendRow(row);
 
+    // The row is already saved at this point — a submission should never
+    // be reported as failed just because the notification email had an
+    // issue, so email errors are caught separately and only logged.
     if (NOTIFY_EMAIL) {
-      MailApp.sendEmail({
-        to: NOTIFY_EMAIL,
-        subject: "New Cleaning Service Request — " + (data.name || "Unknown"),
-        body: HEADERS.map((h, i) => h + ": " + row[i]).join("\n"),
-      });
+      try {
+        MailApp.sendEmail({
+          to: NOTIFY_EMAIL,
+          subject: "New Cleaning Service Request — " + (data.name || "Unknown"),
+          body: HEADERS.map((h, i) => h + ": " + row[i]).join("\n"),
+        });
+      } catch (emailErr) {
+        Logger.log("Email notification failed: " + emailErr);
+      }
     }
 
     return jsonResponse_({ result: "success" });
   } catch (err) {
     return jsonResponse_({ result: "error", message: String(err) });
   }
+}
+
+/**
+ * Run this manually from the Apps Script editor (select "testDoPost" in
+ * the function dropdown, then click Run) to verify the sheet row and
+ * email notification both work — this also triggers the one-time
+ * authorization prompt for spreadsheet + Gmail access, before you wire
+ * up the live website. Check View > Logs afterward for the result, and
+ * check the "Website Requests" tab and your inbox (including spam).
+ */
+function testDoPost() {
+  const fakeEvent = {
+    parameter: {
+      name: "Test User",
+      phone: "555-555-5555",
+      email: "test@example.com",
+      address: "123 Main St",
+      city: "Wesley Chapel",
+      zip: "33544",
+      service: "Deep Cleaning",
+      bedrooms: "3",
+      bathrooms: "2",
+      preferredDate: "2026-08-01",
+      preferredTime: "Morning",
+      petsInHome: "No",
+      someoneHome: "Yes",
+      priorityAreas: "Kitchen and bathrooms",
+      hearAboutUs: "Social Media",
+      additionalInfo: "This is a test submission from testDoPost().",
+      agreement: "on",
+    },
+  };
+  const result = doPost(fakeEvent);
+  Logger.log(result.getContent());
 }
 
 function getOrCreateSheet_() {
