@@ -9,8 +9,7 @@ export const site = {
   email: "hustlemotivationcleaning@gmail.com",
   serviceArea: "Wesley Chapel, FL & surrounding areas",
   instagram: "https://www.instagram.com/hustlemotivationcleaningco/",
-  formspreeEndpoint:
-    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "",
+  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
 };
 
 export const navLinks = [

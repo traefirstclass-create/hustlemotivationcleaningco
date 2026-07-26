@@ -42,7 +42,7 @@ export default function ServiceRequestForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    if (!site.formspreeEndpoint) {
+    if (!site.formEndpoint) {
       const params = new URLSearchParams();
       formData.forEach((value, key) => params.append(key, String(value)));
       window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
@@ -56,18 +56,17 @@ export default function ServiceRequestForm() {
     setError(null);
 
     try {
-      const response = await fetch(site.formspreeEndpoint, {
+      const response = await fetch(site.formEndpoint, {
         method: "POST",
         body: formData,
-        headers: { Accept: "application/json" },
       });
+      const data = await response.json().catch(() => null);
 
-      if (response.ok) {
+      if (response.ok && data?.result === "success") {
         setStatus("success");
         form.reset();
       } else {
-        const data = await response.json().catch(() => null);
-        setError(data?.errors?.[0]?.message ?? "Something went wrong. Please try again.");
+        setError(data?.message ?? "Something went wrong. Please try again.");
         setStatus("error");
       }
     } catch {
