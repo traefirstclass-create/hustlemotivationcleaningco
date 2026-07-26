@@ -18,22 +18,6 @@ export default function Hero() {
       id="top"
       className="relative isolate overflow-hidden bg-gradient-to-b from-ink via-navy-950 to-navy-900 pt-36 pb-24 sm:pt-44 sm:pb-32"
     >
-      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] sm:block">
-        <Image
-          src="/images/hero-photo.jpg"
-          alt="Cleaning supplies staged in a bright, freshly cleaned living room"
-          fill
-          priority
-          className="object-cover object-[65%_55%]"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(6,10,18,1) 0%, rgba(6,10,18,0.85) 12%, rgba(11,23,40,0.35) 32%, rgba(11,23,40,0.15) 55%, rgba(6,10,18,0.55) 100%)",
-          }}
-        />
-      </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
@@ -100,27 +84,39 @@ export default function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="glass-card relative rounded-3xl p-6 shadow-2xl shadow-black/30 sm:p-8"
+            className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/30"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
-              What We Clean
-            </p>
-            <div className="mt-5 grid grid-cols-2 gap-4">
-              {quickServices.map(({ label, icon: Icon }) => (
-                <div
-                  key={label}
-                  className="flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4"
-                >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-navy-700 to-navy-900 text-gold-300 ring-1 ring-white/10">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="text-sm font-semibold text-white">{label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 flex items-center justify-between rounded-2xl bg-white/5 px-4 py-3">
-              <span className="text-sm text-white/70">Free, no-obligation estimates</span>
-              <span className="h-2 w-2 animate-pulse rounded-full bg-mustard-400" />
+            <Image
+              src="/images/hero-photo.jpg"
+              alt="Cleaning supplies staged in a bright, freshly cleaned living room"
+              fill
+              priority
+              className="object-cover object-[70%_55%]"
+            />
+            <div className="absolute inset-0 bg-navy-950/20" />
+            <div className="absolute inset-0 rounded-3xl border border-white/15 bg-white/[0.06] backdrop-blur-[3px]" />
+
+            <div className="relative p-6 sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+                What We Clean
+              </p>
+              <div className="mt-5 grid grid-cols-2 gap-4">
+                {quickServices.map(({ label, icon: Icon }) => (
+                  <div
+                    key={label}
+                    className="flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-navy-950/55 p-4 backdrop-blur-sm"
+                  >
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-navy-700 to-navy-900 text-gold-300 ring-1 ring-white/10">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="text-sm font-semibold text-white">{label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center justify-between rounded-2xl border border-white/10 bg-navy-950/55 px-4 py-3 backdrop-blur-sm">
+                <span className="text-sm text-white/70">Free, no-obligation estimates</span>
+                <span className="h-2 w-2 animate-pulse rounded-full bg-mustard-400" />
+              </div>
             </div>
           </motion.div>
         </div>
