@@ -69,6 +69,7 @@ function doPost(e) {
       try {
         MailApp.sendEmail({
           to: NOTIFY_EMAIL,
+          name: "Hustle & Motivation Website",
           subject: "New Cleaning Service Request — " + (data.name || "Unknown"),
           body: HEADERS.map((h, i) => h + ": " + row[i]).join("\n"),
         });

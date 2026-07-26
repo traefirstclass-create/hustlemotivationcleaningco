@@ -74,11 +74,26 @@ effect — saving the script alone doesn't update the live endpoint.
 Apps Script editor, select `testDoPost` from the function dropdown
 next to the Run button and click **Run**. The first run will prompt
 you to authorize the script (spreadsheet access + "Send email as
-you") — accept it the same way as the deployment prompt. Then check:
+you") — accept it, the same as the deployment prompt.
+
+Note that `MailApp.sendEmail` sends **as whichever Google account
+authorizes the script** — if that's not the same account as
+`NOTIFY_EMAIL`, you won't be able to see the test email land yourself.
+In that case, either:
+
+- Temporarily change `NOTIFY_EMAIL` to your own address, run
+  `testDoPost`, confirm the email arrives, then change it back to
+  `hustlemotivationcleaning@gmail.com` (or whoever should receive
+  requests) before the real deployment — remember to **Deploy →
+  Manage deployments → New version** again after changing it back, or
+- Ask whoever owns that inbox to check for the test email (subject
+  starts with "New Cleaning Service Request") and confirm it arrived,
+  including the spam/junk folder — first-time Apps Script emails
+  occasionally land there.
+
+Either way, also check:
 
 - The **"Website Requests"** tab got a new test row.
-- Your inbox (and **spam/junk folder** — automated Apps Script emails
-  occasionally land there the first time) got the notification email.
 - **View → Logs** in the editor shows `{"result":"success"}`.
 
 If the row appears but no email arrives, the row is still safe (email
