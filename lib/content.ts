@@ -61,6 +61,48 @@ export const services = [
 
 export const recurringOptions = ["Weekly", "Biweekly", "Monthly", "One-Time"];
 
+export const residentialPricing = [
+  { size: "1 bedroom / 1 bath", price: "$150" },
+  { size: "2 bedroom / 1 bath", price: "$200" },
+  { size: "2 bedroom / 2 bath", price: "$275" },
+  { size: "3 bedroom / 2 bath", price: "$325" },
+  { size: "3 bedroom / 3 bath", price: "$400" },
+  { size: "4 bedroom+", price: "$450+" },
+];
+
+export const deepCleaningPricing = [
+  { size: "1 bedroom / 1 bath", price: "$275" },
+  { size: "2 bedroom / 1 bath", price: "$350" },
+  { size: "2 bedroom / 2 bath", price: "$450" },
+  { size: "3 bedroom / 2 bath", price: "$525" },
+  { size: "3 bedroom / 3 bath", price: "$625" },
+  { size: "4 bedroom+", price: "$700+" },
+];
+
+export const premiumPricing = {
+  title: "Premium Deep Clean",
+  description: "A more detailed, top-to-bottom clean for homes that need extra care.",
+  price: "$500 - $800+",
+};
+
+export const movePricing = {
+  title: "Move-In / Move-Out Cleaning",
+  description: "Leave the space spotless for a fresh start.",
+  price: "$600 - $1,000+",
+};
+
+export const addOnServices = [
+  { name: "Inside oven", price: "$50" },
+  { name: "Inside fridge", price: "$60" },
+  { name: "Laundry (wash & fold)", price: "$40+" },
+  { name: "Windows (inside)", price: "$40+" },
+  { name: "Baseboards", price: "$25+" },
+  { name: "Wall spot cleaning", price: "$25+" },
+  { name: "Cabinet exteriors", price: "$25+" },
+  { name: "Appliance exteriors", price: "$25+" },
+  { name: "Blinds (dusting)", price: "$25+" },
+];
+
 export const whyChooseUs = [
   {
     title: "Reliable & Professional",
@@ -114,14 +156,16 @@ export const testimonials = [
 ];
 
 export const serviceOptions = [
-  "Standard Cleaning",
+  "Residential Cleaning",
   "Deep Cleaning",
+  "Premium Deep Cleaning",
   "Move-In Cleaning",
   "Move-Out Cleaning",
   "Airbnb / Rental Turnover",
   "One-Time Cleaning",
   "Recurring Cleaning",
   "Apartment Cleaning",
+  "Office & Commercial Cleaning",
   "Other",
 ];
 

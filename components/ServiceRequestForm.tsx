@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Send, TriangleAlert } from "lucide-react";
-import { hearAboutOptions, serviceOptions, site } from "@/lib/content";
+import { addOnServices, hearAboutOptions, serviceOptions, site } from "@/lib/content";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -173,6 +173,21 @@ export default function ServiceRequestForm() {
               </select>
             </Field>
           </div>
+          <fieldset className="mt-5">
+            <legend className={labelClass}>Add-on services</legend>
+            <p className="mb-3 text-xs text-navy-800/60">Select anything you would like included in your estimate.</p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {addOnServices.map((addOn) => (
+                <label key={addOn.name} className="flex items-center justify-between gap-3 rounded-lg border border-navy-900/10 px-3 py-2 text-sm text-navy-800">
+                  <span className="flex items-center gap-2">
+                    <input type="checkbox" name="addOns" value={addOn.name} className="h-4 w-4 accent-gold-500" />
+                    {addOn.name}
+                  </span>
+                  <span className="font-semibold text-gold-700">{addOn.price}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         </div>
 
         <div>

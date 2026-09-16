@@ -1,4 +1,12 @@
-import { recurringOptions, services } from "@/lib/content";
+import {
+  addOnServices,
+  deepCleaningPricing,
+  movePricing,
+  premiumPricing,
+  recurringOptions,
+  residentialPricing,
+  services,
+} from "@/lib/content";
 import { iconMap } from "./icon-map";
 import ScrollReveal from "./ScrollReveal";
 
@@ -52,7 +60,84 @@ export default function Services() {
             </span>
           ))}
         </ScrollReveal>
+
+        <ScrollReveal delay={0.25} className="mt-20">
+          <div className="rounded-3xl bg-navy-950 p-6 text-white shadow-xl shadow-navy-900/20 sm:p-10">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+                  Clear starting prices
+                </p>
+                <h3 className="mt-2 text-2xl font-bold sm:text-3xl">Choose the clean that fits your space</h3>
+              </div>
+              <p className="max-w-sm text-sm leading-relaxed text-white/60">
+                Prices are based on size and condition. Request a free estimate for your exact quote.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_1fr_0.9fr]">
+              <PriceTable title="Residential Cleaning" prices={residentialPricing} />
+              <PriceTable title="Deep Cleaning" prices={deepCleaningPricing} />
+              <div className="space-y-5">
+                <PriceHighlight {...premiumPricing} />
+                <PriceHighlight {...movePricing} />
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <h4 className="font-bold text-gold-200">Add-on services</h4>
+                  <p className="mt-1 text-sm text-white/55">Build the clean around what your home needs.</p>
+                </div>
+                <a
+                  href="#contact"
+                  className="shrink-0 rounded-full bg-gold-400 px-4 py-2 text-center text-sm font-bold text-navy-950 transition hover:bg-gold-300"
+                >
+                  Inquire about services
+                </a>
+              </div>
+              <div className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                {addOnServices.map((addOn) => (
+                  <div key={addOn.name} className="flex items-center justify-between gap-3 border-b border-white/10 py-1.5 text-sm">
+                    <span className="text-white/75">{addOn.name}</span>
+                    <span className="font-semibold text-gold-200">{addOn.price}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
+  );
+}
+
+function PriceTable({ title, prices }: { title: string; prices: { size: string; price: string }[] }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+      <h4 className="font-bold text-gold-200">{title}</h4>
+      <div className="mt-3 divide-y divide-white/10">
+        {prices.map((item) => (
+          <div key={item.size} className="flex items-center justify-between gap-3 py-2 text-sm">
+            <span className="text-white/75">{item.size}</span>
+            <span className="font-bold text-gold-200">{item.price}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PriceHighlight({ title, description, price }: { title: string; description: string; price: string }) {
+  return (
+    <div className="rounded-2xl border border-gold-400/40 bg-gold-400/10 p-5">
+      <h4 className="font-bold text-gold-200">{title}</h4>
+      <p className="mt-2 text-sm leading-relaxed text-white/65">{description}</p>
+      <p className="mt-3 text-3xl font-bold tracking-tight text-gold-200">{price}</p>
+      <a href="#contact" className="mt-3 inline-block text-sm font-semibold text-white underline decoration-gold-400 underline-offset-4 hover:text-gold-200">
+        Request this service
+      </a>
+    </div>
   );
 }
